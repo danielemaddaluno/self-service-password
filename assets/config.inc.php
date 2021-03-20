@@ -308,3 +308,12 @@ $default_action = "sendtoken";
 if (file_exists (__DIR__ . '/config.inc.local.php')) {
     require __DIR__ . '/config.inc.local.php';
 }
+
+
+# debug LDAP connection problems
+#ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7);
+
+# disable all certificate validation
+#putenv('LDAPTLS_REQCERT=never');
+
+?>

@@ -2,7 +2,8 @@
 
 A lightweight Self Service Password Docker image built from source atop [Alpine Linux](https://store.docker.com/images/alpine).
 
-Self Service Password is a PHP application that allows users to change their password in an LDAP directory. See http://ltb-project.org/wiki/documentation/self-service-password.
+Self Service Password is a PHP application that allows users to change their password in an LDAP directory. See http://ltb-project.org/wiki/documentation/self-service-password.<br>
+The application can be used on standard LDAPv3 directories (OpenLDAP, OpenDS, ApacheDS, Sun Oracle DSEE, Novell, etc.) and also on Active Directory.
 
 ## How to use this image
 
@@ -12,21 +13,22 @@ The easiest way is to create your own configuration file and modify it according
 $ docker run -d \
          -p 8080:80 \
          -v config.inc.php:/var/www/html/conf/config.inc.php \
-         --name ltb \
+         --name ssp \
          danielemaddaluno/self-service-password:latest
 ```
 
 For docker-compose use this snippet:
 ```
-  ltb:
-    image: danielemaddaluno/self-service-password:latest
-    container_name: ltb
-    ports:
-      - 8080:80
-    volumes:
-      - ./config.inc.php:/var/www/html/conf/config.inc.php
+version: "3"
+services:
+  ssp:
+      image: danielemaddaluno/self-service-password
+      ports:
+        - 8080:80
+      volumes:
+        - ./conf:/var/www/html/conf/
 ```
-
+Inside the github [docker-compose](https://github.com/danielemaddaluno/self-service-password/tree/master/docker-compose) folder you can find a `.yaml` example file and bat/sh scripts to automatically startup `self-service-password` with docker-compose.
 
 ## Modify the image
 
@@ -46,6 +48,11 @@ docker build -t self-service-password .
 ```
 
 Don't forget to edit the configuration file `assets/config.inc.php`
+
+
+## Disable all certificate validation
+If you need to disable all certificate validation just uncomment the following line `putenv('LDAPTLS_REQCERT=never');` inside of the configuration file `config.inc.php`
+
 
 ## Documentation for LTB Self-Service-Password
 

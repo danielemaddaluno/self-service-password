@@ -29,6 +29,7 @@ COPY assets/php.ini /etc/php7/conf.d/z_custom_php.ini
 COPY assets/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENV LTB_PROJECT_VERSION 1.3
+# Computed on MacOS with "shasum -a 256 self-service-password.tar.gz"
 ENV LTB_PROJECT_SHA256 e528e879c4f14cb13f0ea947b5205de7e555f55c14ca8d5533e81ef48d47c8a9
 
 # Download ltb-project self-service password
