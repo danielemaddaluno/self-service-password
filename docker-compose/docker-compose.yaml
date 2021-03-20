@@ -1,0 +1,8 @@
+version: "3"
+services:
+  ssp:
+      image: danielemaddaluno/self-service-password
+      ports:
+        - 8080:80
+      volumes:
+        - ./conf:/var/www/html/conf/
