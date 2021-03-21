@@ -26,7 +26,7 @@ services:
       ports:
         - 8080:80
       volumes:
-        - ./conf:/var/www/html/conf/
+        - ./conf/:/var/www/html/conf/
 ```
 Inside the github [docker-compose](https://github.com/danielemaddaluno/self-service-password/tree/master/docker-compose) folder you can find a `.yaml` example file and bat/sh scripts to automatically startup `self-service-password` with docker-compose.
 
